@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { NavbarItem } from './navbar.types';
 
 @Component({
   selector: 'app-navbar',
@@ -6,4 +7,22 @@ import { Component } from '@angular/core';
   templateUrl: './navbar.html',
   styleUrls: ['./navbar.css'],
 })
-export class NavbarComponent {}
+export class NavbarComponent {
+  items: NavbarItem[] = [
+    { type: 'logo', text: 'CodeFactory', href: '#course' },
+
+    { type: 'link', text: 'Course', href: '#course' },
+    { type: 'link', text: 'Teacher', href: '#teacher' },
+    { type: 'link', text: 'Technologies', href: '#tech' },
+    { type: 'link', text: 'News', href: '#news' },
+    { type: 'link', text: 'About us', href: '/about-us' },
+    { type: 'link', text: 'Contact', href: '/contact' },
+
+    {
+      type: 'button',
+      text: 'Register',
+      href: '#price-offers',
+      classes: 'btn btn-primary ms-lg-3',
+    },
+  ];
+}
