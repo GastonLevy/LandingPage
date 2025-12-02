@@ -1,24 +1,27 @@
-<section id="teacher" class="py-5">
+<section id="tech" class="py-5 bg-light">
   <div class="container">
-    <h2 class="text-center mb-4">Our Instructor</h2>
+    <h2 class="text-center mb-4">Technologies You Will Learn</h2>
 
-    <div class="row align-items-center">
-      <!-- TEACHER IMAGE -->
-      <div class="col-12 col-md-4 text-center mb-4 mb-md-0">
-        <img src="assets/teacher.jpg" alt="Teacher" class="img-fluid rounded shadow-sm" />
+    <div class="row g-3 justify-content-center">
+      <!--ALLE Technologien tech.ts -->
+      @for (tech of technologies; track $index) {
+
+      <div class="col-6 col-md-4 col-lg-2">
+        <div class="border rounded text-center py-3 h-100">
+          <!-- ✔️ Icon (für später Icons )
+            <img
+              [src]="tech.iconUrl"
+              [alt]="tech.iconAlt"
+              class="img-fluid mb-2"
+            />
+            -->
+
+          <!-- ✔️ TECHNOLOGIE NAME -->
+          <span class="fw-bold">{{ tech.name }}</span>
+        </div>
       </div>
 
-      <!-- TEACHER TEXT -->
-      <div class="col-12 col-md-8">
-        <h3 class="fw-bold mb-2">John Doe</h3>
-
-        <p class="mb-0">
-          Senior Developer & Mentor with over 10 years of experience in modern web technologies,
-          including JavaScript, TypeScript, HTML, CSS and Angular. Passionate about teaching and
-          helping students grow into job-ready developers. (You just copied and pasted without
-          looking, I'm super proud.)
-        </p>
-      </div>
+      }
     </div>
   </div>
 </section>
