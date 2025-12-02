@@ -1,9 +1,11 @@
 import { Component } from '@angular/core';
 import { CourseFormatsConfig } from './course-formats.types';
+import { CommonModule } from '@angular/common';
 
 @Component({
   selector: 'app-course-formats',
   standalone: true,
+  imports: [CommonModule],
   templateUrl: './course-formats.html',
   styleUrl: './course-formats.css',
 })
