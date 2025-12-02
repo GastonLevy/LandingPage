@@ -8,60 +8,30 @@
     </p>
   </div>
 </div>
+
 <main>
   <div class="d-flex justify-content-center row row-cols-1 row-cols-md-3 mb-4 text-center mx-5">
+    @for (offer of config.offers; track $index) {
     <div class="col" style="width: 24rem">
       <div class="card mb-4 rounded-3 shadow-sm">
-        <div class="card-header py-3"><h4 class="my-0 fw-normal">Beginner</h4></div>
-        <div class="card-body">
-          <h1 class="card-title pricing-card-title">
-            €25<small class="text-body-secondary fw-light">/mo</small>
-          </h1>
-          <ul class="list-unstyled mt-3 mb-4">
-            <li>10 courses included</li>
-            <li>2 GB of storage</li>
-            <li>Email support</li>
-            <li>Help center access</li>
-          </ul>
-          <button type="button" class="w-100 btn btn-lg btn-outline-dark">Sign up</button>
-        </div>
-      </div>
-    </div>
-    <div class="col" style="width: 24rem">
-      <div class="card mb-4 rounded-3 shadow-sm">
-        <div class="card-header py-3"><h4 class="my-0 fw-normal">Intermediate</h4></div>
-        <div class="card-body">
-          <h1 class="card-title pricing-card-title">
-            €45<small class="text-body-secondary fw-light">/mo</small>
-          </h1>
-          <ul class="list-unstyled mt-3 mb-4">
-            <li>20 courses included</li>
-            <li>10 GB of storage</li>
-            <li>Priority email support</li>
-            <li>Help center access</li>
-          </ul>
-          <button type="button" class="w-100 btn btn-lg btn-primary">Get started</button>
-        </div>
-      </div>
-    </div>
-    <div class="col" style="width: 24rem">
-      <div class="card mb-4 rounded-3 shadow-sm border-primary">
-        <div class="card-header py-3 text-bg-primary border-primary">
-          <h4 class="my-0 fw-normal">Expert</h4>
+        <div class="card-header py-3">
+          <h4 class="my-0 fw-normal">{{ offer.title }}</h4>
         </div>
         <div class="card-body">
           <h1 class="card-title pricing-card-title">
-            €85<small class="text-body-secondary fw-light">/mo</small>
+            {{ offer.price }}<small class="text-body-secondary fw-light">{{ offer.period }}</small>
           </h1>
           <ul class="list-unstyled mt-3 mb-4">
-            <li>30 courses included</li>
-            <li>15 GB of storage</li>
-            <li>Phone and email support</li>
-            <li>Help center access</li>
+            @for (feature of offer.features; track $index) {
+            <li>{{ feature }}</li>
+            }
           </ul>
-          <button type="button" class="w-100 btn btn-lg btn-primary">Contact us</button>
+          <button type="button" class="w-100 btn btn-lg btn-outline-dark">
+            {{ offer.buttonText }}
+          </button>
         </div>
       </div>
     </div>
+    }
   </div>
 </main>
