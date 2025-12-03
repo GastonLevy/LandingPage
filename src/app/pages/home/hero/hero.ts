@@ -1,4 +1,5 @@
-import { Component } from '@angular/core';
+import { Component, inject, effect } from '@angular/core';
+import { AppConfigService } from '../../../services/app-config.service'; // 👈 ajustá la ruta
 import { HeroConfig } from './hero.types';
 
 @Component({
@@ -8,12 +9,25 @@ import { HeroConfig } from './hero.types';
   styleUrls: ['./hero.css'],
 })
 export class HeroComponent {
+  private readonly appConfig = inject(AppConfigService);
+
+  // Valor inicial seguro
   hero: HeroConfig = {
-    title: 'Learn Modern Web Development',
-    text: 'Become job-ready with our hands-on CodeFactory courses.',
-    buttonText: 'Get Started',
-    buttonLink: '#price-offers',
-    imageUrl: 'assets/hero.png',
-    imageAlt: 'Course hero image',
+    title: '',
+    text: '',
+    buttonText: '',
+    buttonLink: '',
+    imageUrl: '',
+    imageAlt: '',
   };
+
+  constructor() {
+    effect(() => {
+      const cfg = this.appConfig.config()?.hero;
+      console.log('[Hero] hero desde service:', cfg); // DEBUG
+      if (cfg) {
+        this.hero = cfg;
+      }
+    });
+  }
 }

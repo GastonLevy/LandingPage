@@ -1,6 +1,7 @@
-import { Component } from '@angular/core';
-import { CourseFormatsConfig } from './course-formats.types';
+import { Component, inject, effect } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { CourseFormatsConfig } from './course-formats.types';
+import { AppConfigService } from '../../../services/app-config.service';
 
 @Component({
   selector: 'app-course-formats',
@@ -10,39 +11,21 @@ import { CommonModule } from '@angular/common';
   styleUrl: './course-formats.css',
 })
 export class CourseFormats {
-  config: CourseFormatsConfig = {
-    heading: 'Course Types',
-    subheading: 'Choose type of course which fits you the best!',
+  private readonly appConfig = inject(AppConfigService);
 
-    formats: [
-      {
-        title: 'Online',
-        features: ['Online access to all courses', 'Online classes', 'Online teacher support'],
-        buttonText: 'More information',
-        buttonClass: 'w-100 btn btn-lg btn-outline-dark',
-      },
-      {
-        title: 'Present',
-        features: [
-          'Online access to all courses',
-          'Present classes at school',
-          'Support from teachers at school',
-        ],
-        buttonText: 'More information',
-        buttonClass: 'w-100 btn btn-lg btn-primary',
-      },
-      {
-        title: 'Combined',
-        features: [
-          'Online access to all courses',
-          'Switching between Online and Present classes',
-          'Support from teachers online or at school',
-        ],
-        buttonText: 'More information',
-        buttonClass: 'w-100 btn btn-lg btn-primary',
-        cardClass: 'border-primary',
-        headerClass: 'text-bg-primary border-primary',
-      },
-    ],
+  config: CourseFormatsConfig = {
+    heading: '',
+    subheading: '',
+    formats: [],
   };
+
+  constructor() {
+    effect(() => {
+      const cfg = this.appConfig.config()?.courseFormats;
+      console.log('courseFormats desde service:', cfg);
+      if (cfg) {
+        this.config = cfg;
+      }
+    });
+  }
 }
