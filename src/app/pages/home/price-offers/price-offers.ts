@@ -1,11 +1,9 @@
 import { Component } from '@angular/core';
 import { PriceOffersConfig } from './price-offers.types';
-import { CommonModule } from '@angular/common';
 
 @Component({
   selector: 'app-price-offers',
   standalone: true,
-  imports: [CommonModule],
   templateUrl: './price-offers.html',
   styleUrl: './price-offers.css',
 })
