@@ -19,7 +19,7 @@
         </div>
         <div class="card-body">
           <h1 class="card-title pricing-card-title">
-            {{ offer.price }}<small class="text-body-secondary fw-light">{{ offer.period }}</small>
+            €{{ offer.price }}<small class="text-body-secondary fw-light">{{ offer.period }}</small>
           </h1>
           <ul class="list-unstyled mt-3 mb-4">
             @for (feature of offer.features; track $index) {
