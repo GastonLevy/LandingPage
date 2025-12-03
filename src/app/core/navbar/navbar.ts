@@ -1,11 +1,14 @@
 import { Component } from '@angular/core';
 import { NavbarItem } from './navbar.types';
+import { RouterLink, RouterLinkActive } from '@angular/router';
+import { NgClass } from '@angular/common';
 
 @Component({
   selector: 'app-navbar',
   standalone: true,
+  imports: [RouterLink, RouterLinkActive, NgClass],
   templateUrl: './navbar.html',
-  styleUrls: ['./navbar.css'],
+  styleUrl: './navbar.css',
 })
 export class NavbarComponent {
   items: NavbarItem[] = [

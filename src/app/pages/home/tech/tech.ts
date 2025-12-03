@@ -1,5 +1,6 @@
-import { Component } from '@angular/core';
+import { Component, inject, effect } from '@angular/core';
 import { TechItem } from './tech.types';
+import { AppConfigService } from '../../../services/app-config.service';
 
 @Component({
   selector: 'app-tech',
@@ -8,31 +9,17 @@ import { TechItem } from './tech.types';
   styleUrl: './tech.css',
 })
 export class Tech {
-  technologies: TechItem[] = [
-    {
-      name: 'JavaScript',
-      iconUrl: 'assets/js.png',
-      iconAlt: 'JavaScript',
-    },
-    {
-      name: 'TypeScript',
-      iconUrl: 'assets/ts.png',
-      iconAlt: 'TypeScript',
-    },
-    {
-      name: 'HTML',
-      iconUrl: 'assets/html.png',
-      iconAlt: 'HTML',
-    },
-    {
-      name: 'CSS',
-      iconUrl: 'assets/css.png',
-      iconAlt: 'CSS',
-    },
-    {
-      name: 'Angular',
-      iconUrl: 'assets/angular.png',
-      iconAlt: 'Angular',
-    },
-  ];
+  private readonly appConfig = inject(AppConfigService);
+
+  technologies: TechItem[] = [];
+
+  constructor() {
+    effect(() => {
+      const cfg = this.appConfig.config()?.technologies;
+      console.log('[Tech] technologies desde service:', cfg);
+      if (cfg) {
+        this.technologies = cfg;
+      }
+    });
+  }
 }
